@@ -1,29 +1,63 @@
-<h1>Listing ideas</h1>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name  </th>
-      <th>Description  </th>
-      <th>Picture  </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="https://dn-skypixel-image.qbox.me/uploads/newphotos/9eed83428c24beef1b2e8a49f7f8cc1c/1920x1920" width="100%" style="height: 500px" alt="Error" >
+      <div class="carousel-caption">
+      </div>
+    </div>
 
-  <tbody>
-    <% @ideas.each do |idea| %>
-      <tr>
-        <td><%= idea.name %></td>
-        <td><%= idea.description %></td>
-        <td><%= image_tag(idea.picture_url, :width => 600) if idea.picture.present? %></td>
-        <td><%= link_to 'Show', idea %></td>
-        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="item">
+      <img src="https://dn-skypixel-image.qbox.me/uploads/newphotos/8c51cc0622c39b866c7593aee8b26f9d/1920x1920" width="100%" alt="Error" style="height: 500px">
+      <div class="carousel-caption">
+      </div>
+    </div>
+
+     <div class="item">
+      <img src="https://dn-skypixel-image.qbox.me/uploads/newphotos/7cecd08bfeb077ab54412df1b71effb5/1920x1920" width="100%" style="height: 500px" alt="Error" >
+      <div class="carousel-caption">
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://dn-skypixel-image.qbox.me/uploads/newphotos/399f7996099b4ea64fe15be23813a0f7/1920x1920" width="100%" style="height: 500px" alt="Error" >
+      <div class="carousel-caption">
+      </div>
+    </div>
+  
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<h1>More
+<%= link_to 'New picture', new_idea_path, class: "btn btn-default pull-right" %></h1>
+<% @ideas.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |idea| %>
+      <div class="col-md-4">
+      <div style= "width: 100%; height: 230px; background:url(<%=idea.picture_url%>) center center; background-size: cover;"></div>
+        <h4><%= link_to idea.name, idea %></h4>
+        <%= idea.description %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
+
 
 <br>
-
-<%= link_to 'New Idea', new_idea_path %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/picture', to: 'picture#index'
+
+  get '/video', to: 'video#index'
+
   get '/about', to: 'pages#info'
 
   resources :ideas
